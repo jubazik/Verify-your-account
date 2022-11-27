@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import Blog
 
 
-admin.site.reqister(Blog)
+admin.site.register(Blog)
 
 
 
