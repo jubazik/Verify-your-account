@@ -29,6 +29,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'block.apps.BlockConfig'
     'events.apps.EventsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
