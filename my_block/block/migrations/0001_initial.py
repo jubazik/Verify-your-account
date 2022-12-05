@@ -12,12 +12,13 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Event',
+            name='Blog',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('data', models.DateTimeField(auto_now_add=True)),
-                ('event_image', models.ImageField(upload_to='event_images/')),
-                ('event_text', models.CharField(max_length=300)),
+                ('title', models.CharField(max_length=60)),
+                ('date', models.DateTimeField(auto_now_add=True)),
+                ('text', models.TextField(blank=True)),
+                ('image', models.ImageField(upload_to='event_images/')),
             ],
         ),
     ]
