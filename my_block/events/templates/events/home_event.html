@@ -2,9 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Список</title>
+    <title>title</title>
 </head>
 <body>
-    <h1> список</h1>
+<h1>Контрагенты</h1>
+
+{% for event in events %}
+
+    <div>
+        <p> {{event.data|date:"Y-m-d H:i:s" }} </p>
+        <p> {{event.name}} </p>
+        <p> {{event.image}} </p>
+        <p> {{event.test}} </p>
+    </div>
+    <hr>
+
+{% endfor %}
 </body>
 </html>
