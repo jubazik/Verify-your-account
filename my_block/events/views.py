@@ -10,13 +10,13 @@ def home_event(request):
 # Create your views here.
 
 
-def get_all(request):
+def get_eventsblock_all(request):
     events = EventsBlonck.objects.all()
     context = {
         'events': events,
-        'title':'список контрагентов'
+        'title': 'список контрагентов'
     }
     # res = '<<h1>Записи</h1>'
     # for event in events:
     #     res += f'<div>\n<p>{event}</p>\n</div>'
-    return render(request, template_name='events/home_event.html', context= context)
+    return render(request, template_name='events/home_event.html', context=context)

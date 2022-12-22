@@ -4,5 +4,5 @@ from .views import *
 
 urlpatterns = [
     path('', home_event, name='event'),
-    path('get_all/', get_all),
+    path('get_all/', get_eventsblock_all, name='get_all'),
 ]

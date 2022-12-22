@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Контрагенты</title>
+</head>
+<body>
+    <h1>Контрагенты</h1>
+{% for counterparty in counterparties %}
+
+    <div>
+        <p>{{counterparty.date|date:"Y-m-d H:i:s"}}</p>
+        <p>{{counterparty.name}}</p>
+        <p>{{counterparty.surname}}</p>
+        <p>{{counterparty.firma}}</p>
+        <p>{{counterparty.phone}}</p>
+    </div>
+    <hr>
+{% endfor %}
+</body>
+</html>
