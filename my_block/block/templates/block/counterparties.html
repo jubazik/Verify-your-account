@@ -1,21 +1,79 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Контрагенты</title>
+    <meta charset="uts-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>{{ title }}</title>
 </head>
 <body>
-    <h1>Контрагенты</h1>
-{% for counterparty in counterparties %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-    <div>
-        <p>{{counterparty.date|date:"Y-m-d H:i:s"}}</p>
-        <p>{{counterparty.name}}</p>
-        <p>{{counterparty.surname}}</p>
-        <p>{{counterparty.firma}}</p>
-        <p>{{counterparty.phone}}</p>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a class="nav-link" href="/">Главная</a></li>
+            <li class="nav-item"><a class="nav-link" href="/">Добавить Контрагента</a></li>
+            <li class="nav-item"><a class="nav-link" href="/">Добавить запись</a></li>
+            <hr>
+            <li class="nav-item"><a class="nav-link" href="/">О нас </a></li>
+        </ul>
     </div>
-    <hr>
-{% endfor %}
+</nav>
+<div class="contatiner mt-3">
+    <h1>{{ title }}</h1>
+    <div class="row">
+        {% for item in counter %}
+        <div class="card-mb-3">
+            <div class="card-header">
+                Контрагент:
+            </div>
+            <div class="card-body">
+                <hr>
+                <h5 class="card-title {% cycle 'text-danger' 'text-success' %}">{{ item.name }}</h5>
+                                <h5 class="card-title {% cycle 'text-danger' 'text-success' %}">{{ item.surname }}</h5>
+                                <p class="card-title {% cycle 'text-danger' 'text-success' %}">{{ item.firma }}</p>
+                                <p class="card-title {% cycle 'text-danger' 'text-success' %}">{{ item.phone }}</p>
+                <p class="card-text">{{ counterparty.surname|safe}}
+
+                </p>
+                <a href="#" class="btn btn-primary">Read more...</a>
+            </div>
+        </div>
+        <div class="card-footer text-muted">
+            {{ event.data|date:"Y-m-d H:i:s" }}
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+
 </body>
 </html>
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Контрагенты</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>Контрагенты</h1>-->
+<!--{% for counterparty in counterparties %}-->
+
+<!--    <div>-->
+<!--        <p>{{counterparty.date|date:"Y-m-d H:i:s"}}</p>-->
+<!--        <p>{{counterparty.name}}</p>-->
+<!--        <p>{{counterparty.surname}}</p>-->
+<!--        <p>{{counterparty.firma}}</p>-->
+<!--        <p>{{counterparty.phone}}</p>-->
+<!--    </div>-->
+<!--    <hr>-->
+<!--{% endfor %}-->
+<!--</body>-->
+<!--</html>-->

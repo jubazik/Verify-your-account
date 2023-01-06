@@ -33,15 +33,15 @@
         <div class="col-md-3">
             {% for item in counterparties %}
                 <div class="list-group">
-                <a href="{% url 'get_record_id' item.pk %}" class="list-group-item list-group-item-action">{{ item.name }} {{ item.surname }}</a>
+                <a href="{% url 'get_record_id' item.pk %}"  class="list-group-item list-group-item-action">{{ item.name }} {{ item.surname }}</a>
             </div>
             {% endfor %}
         </div>
         <div class="col-md-9">
-            {% for item in records reversed %}
+            {% for item in record reversed %}
             <div class="card mb-9">
                 <div class="card-header">
-                   <h1>Контрагент: {{ item.name }}</h1>
+                   <h5>Контрагент: {{ item.name }}</h5>
                 </div>
                 <div class="card-body">
                     <p class="card-text">{{ item.sum }}р</p>
@@ -53,6 +53,7 @@
                 </div>
             </div>
             <p>
+
             </p>
             {% empty %}
             Oops..

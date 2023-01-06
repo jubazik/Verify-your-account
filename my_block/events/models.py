@@ -23,10 +23,12 @@ class Event(models.Model):
 class EventsBlonck(models.Model):
     data = models.DateTimeField(auto_now_add=True, verbose_name='Дата')
     name = models.CharField(max_length=30, verbose_name='Имя')
-    image = models.ImageField(upload_to='events_images/', verbose_name='Фото')
+    image = models.ImageField(upload_to='events_images/', blank=True , verbose_name='Фото')
     test = models.TextField(verbose_name='Текст')
     category = models.ForeignKey('Category', on_delete=models.PROTECT, null=True, verbose_name='Группа')
 
+    def my_func(self):
+        return 'hello word'
     def __str__(self):
         return self.name
 

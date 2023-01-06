@@ -3,6 +3,6 @@ from .views import *
 
 
 urlpatterns = [
-    path('', home_event, name='event'),
-    path('get_all/', get_eventsblock_all, name='get_all'),
+    path('', home_event, name='event_home'),
+    path('category/<int:category_id>/', get_category, name='category'),
 ]

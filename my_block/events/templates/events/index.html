@@ -1,59 +1,73 @@
 <!doctype html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>{{ title }}</title>
+    <title>{{ category.title }}</title>
 </head>
 <body>
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="{% url 'event_home' %}">Navbar</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item"><a class="nav-link" href="#">Главная</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Добавить Запись</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'event_home' %}">Главная</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'event_home' %}">Добавить Запись</a></li>
         </ul>
         <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
     </div>
+
 </nav>
-<div class="container mt-8">
-    <h1>{{ title }}</h1>
+
+<div class="container mt-3">
     <div class="row">
         <div class="col-md-3">
-            {% for item in counterparties %}
-                <div class="list-group">
-                <a href="{% url 'get_record_id' item.pk %}" class="list-group-item list-group-item-action">{{ item.name }} {{ item.surname }}</a>
+            {% for item in categorys %}
+            <div class="list-group">
+                <a href="{% url 'category' item.pk %}" class="list-group-item list-group-item-action">{{ item.title }}</a>
             </div>
             {% endfor %}
         </div>
         <div class="col-md-9">
-            {% for item in records reversed %}
-            <div class="card mb-9">
+            {% for event in events reversed %}
+            <div class="card mb-3">
                 <div class="card-header">
-                   <h1>Контрагент: {{ item.name }}</h1>
+                    Категория: {{ event.category }}
                 </div>
                 <div class="card-body">
-                    <p class="card-text">{{ item.sum }}р</p>
-                    <hr>
-                    <p class="card-text">{{ item.coment }}</p>
+                    <div class="media">
+                        {% if event.image %}
+                        <img src="{{ event.image.url }}" alt="" , width="350" class="mr-3">
+                        <hr>
+                        {% else %}
+                        <img src="https://sun2-9.userapi.com/impg/UdtVAyRfRViY19v1AiK5uCQKWSHkEPFvlWPtPQ/DGDZCjl39kI.jpg?size=1073x1080&quality=9
+                        5&sign=ed65f55781d3f979643e323ff40fe92c&type=album"
+                             alt="" , width="300" , class="mr-5">
+                        <hr>
+                        {% endif %}
+                        <div class="media-body">
+                            <h5 class="card-title">{{ event.name }}</h5>
+                            <p class="card-text">{{ event.test|safe|linebreaks|truncatewords:100 }}</p>
+                            <hr>
+                            <a href="#" class="btn btn-primary">Read more...</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-footer text-muted">
-                    {{ item.data|date:"Y-m-d H:i:s" }}
+                    {{ event.data|date:"Y-m-d H:i:s" }}
                 </div>
             </div>
-            <p>
-            </p>
             {% empty %}
             Oops..
             {% endfor %}

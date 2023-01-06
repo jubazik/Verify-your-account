@@ -1,22 +1,111 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
-    <meta charset="UTF-8">
-    <title>title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>{{ title }}</title>
 </head>
 <body>
-<h1>Контрагенты</h1>
 
-{% for event in events %}
 
-    <div>
-        <p> {{event.data|date:"Y-m-d H:i:s" }} </p>
-        <p> {{event.name}} </p>
-        <p> {{event.image}} </p>
-        <p> {{event.test}} </p>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{% url 'event_home' %}">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a class="nav-link" href="{% url 'event_home' %}">Главная</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'event_home' %}">Добавить Запись</a></li>
+        </ul>
+        <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
     </div>
-    <hr>
+</nav>
+<div class="container mt-8">
+    <h1>{{ title }}</h1>
+    <div class="row">
+        <div class="col-md-3">
+            {% for item in categorys %}
+            <div class="list-group">
+                <a href="{% url 'category' item.pk %}" class="list-group-item list-group-item-action">{{ item.title }}</a>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="col-md-9">
+            {% for event in events reversed %}
+            <div class="card mb-3">
+                <div class="card-header">
+                    Категория: <a href="{% url 'category' event.category.pk %}">{{ event.category }} </a>
+                </div>
+                <div class="card-body">
+                    <div class="media">
+                        {% if event.image %}
+                        <img src="{{ event.image.url }}" alt="" , width="350" class="mr-3">
+                        <hr>
+                        {% else %}
+                        <img src="https://sun2-9.userapi.com/impg/UdtVAyRfRViY19v1AiK5uCQKWSHkEPFvlWPtPQ/DGDZCjl39kI.jpg?size=1073x1080&quality=9
+                        5&sign=ed65f55781d3f979643e323ff40fe92c&type=album"
+                             alt="" , width="300" , class="mr-5">
+                        <hr>
+                        {% endif %}
+                        <div class="media-body">
 
-{% endfor %}
+                            <h5 class="card-title">{{ event.name }}</h5>
+                            <p class="card-text">{{ event.test|safe|linebreaks|truncatewords:100 }}</p>
+                            <hr>
+                            <a href="#" class="btn btn-primary">Read more...</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    {{ event.data|date:"Y-m-d H:i:s" }}
+                </div>
+            </div>
+            {% empty %}
+            Oops..
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
 </body>
 </html>
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>title</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Контрагенты</h1>-->
+
+<!--{% for event in events %}-->
+
+<!--    <div>-->
+<!--        <p> {{event.data|date:"Y-m-d H:i:s" }} </p>-->
+<!--        <p> {{event.name}} </p>-->
+<!--        <p> {{event.image}} </p>-->
+<!--        <p> {{event.test}} </p>-->
+<!--    </div>-->
+<!--    <hr>-->
+
+<!--{% endfor %}-->
+<!--</body>-->
+<!--</html>-->

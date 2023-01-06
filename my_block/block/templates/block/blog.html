@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Мой Блог</title>
+</head>
+<body>
+{% for i in blog %}
+    <div>
+        <p>{{i.title}}</p>
+        <p>{{i.date|date:"Y-m-d H:i:s"}}</p>
+        <p>{{i.text}}</p>
+            <p>{{i.image}}</p>
+    </div>
+    <hr>
+{% endfor %}
+</body>
+</html>
