@@ -25,28 +25,31 @@
         </ul>
     </div>
 </nav>
-<div class="contatiner mt-3">
+<div class="contatiner mt-8">
     <h1>{{ title }}</h1>
     <div class="row">
-        {% for item in counter %}
-        <div class="card-mb-3">
-            <div class="card-header">
-                Контрагент:
+        <div class="col-md-3">
+                {% for item in category %}
+            <div class="list-group">
+                <a href="{% url 'count_id' item.pk %}" class="list-group-item list-group-item-action">{{ item.title }}</a>
             </div>
-            <div class="card-body">
-                <hr>
-                <h5 class="card-title {% cycle 'text-danger' 'text-success' %}">{{ item.name }}</h5>
-                                <h5 class="card-title {% cycle 'text-danger' 'text-success' %}">{{ item.surname }}</h5>
-                                <p class="card-title {% cycle 'text-danger' 'text-success' %}">{{ item.firma }}</p>
-                                <p class="card-title {% cycle 'text-danger' 'text-success' %}">{{ item.phone }}</p>
-                <p class="card-text">{{ counterparty.surname|safe}}
-
-                </p>
-                <a href="#" class="btn btn-primary">Read more...</a>
-            </div>
+            {% endfor %}
         </div>
-        <div class="card-footer text-muted">
-            {{ event.data|date:"Y-m-d H:i:s" }}
+        <div class="col-md-9">
+            {% for item in counterparties %}
+            <div class="card-mb-9">
+                <div class="card-header">
+                    Контрагент:
+                </div>
+                <div class="card-body">
+                    <hr>
+                    <h5 class="card-title {% cycle 'text-danger' 'text-success' %}">{{ item.name }}</h5>
+                    <h5 class="card-title {% cycle 'text-danger' 'text-success' %}">{{ item.surname }}</h5>
+                    <p class="card-title {% cycle 'text-danger' 'text-success' %}">{{ item.firma }}</p>
+                    <p class="card-title {% cycle 'text-danger' 'text-success' %}">{{ item.phone }}</p>
+
+                </div>
+            </div>
         </div>
         {% endfor %}
     </div>
@@ -55,25 +58,3 @@
 
 </body>
 </html>
-
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Контрагенты</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--    <h1>Контрагенты</h1>-->
-<!--{% for counterparty in counterparties %}-->
-
-<!--    <div>-->
-<!--        <p>{{counterparty.date|date:"Y-m-d H:i:s"}}</p>-->
-<!--        <p>{{counterparty.name}}</p>-->
-<!--        <p>{{counterparty.surname}}</p>-->
-<!--        <p>{{counterparty.firma}}</p>-->
-<!--        <p>{{counterparty.phone}}</p>-->
-<!--    </div>-->
-<!--    <hr>-->
-<!--{% endfor %}-->
-<!--</body>-->
-<!--</html>-->

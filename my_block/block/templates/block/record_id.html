@@ -20,6 +20,9 @@
         <ul class="navbar-nav mr-auto">
             <li class="nav-item"><a class="nav-link" href="#">Главная</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Добавить Запись</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'counter' %}">Контрагенты</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'record' %}">Оплаты</a></li>
+
         </ul>
         <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -44,12 +47,12 @@
                    <h5>Контрагент: {{ item.name }}</h5>
                 </div>
                 <div class="card-body">
-                    <p class="card-text">{{ item.sum }}р</p>
+                    <p class="card-text">Сумма: {{ item.sum }}р</p>
                     <hr>
-                    <p class="card-text">{{ item.coment }}</p>
+                    <p class="card-text">Комментарии: {{ item.coment }}</p>
                 </div>
                 <div class="card-footer text-muted">
-                    {{ item.data|date:"Y-m-d H:i:s" }}
+                    {{ item.data|date:"Y-m-d H:i" }}
                 </div>
             </div>
             <p>
