@@ -33,6 +33,9 @@ class Records(models.Model):
     sum = models.IntegerField(verbose_name='Сумма')
     coment = models.CharField(max_length=80, blank=True, verbose_name='Коментарий')
 
+    def __str__(self):
+        return f"{self.name} {self.sum}"
+
     class Meta:
         verbose_name = 'Запись'
         verbose_name_plural = 'Записи'

@@ -22,6 +22,9 @@ class СounterpartiesAdmin(admin.ModelAdmin):
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('id','title')
+    list_display_links = ('id', 'title')
+    ordering = ('id', 'title')
+
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Blog, BlogAdmin)
