@@ -1,0 +1,13 @@
+{% load new_tags %}
+{% comment %}
+<div class="list-group">
+    {% get_list_categories as categorys %}
+
+    {% for item in categorys %}
+    <a href="{% url 'category' item.pk %}" class="list-group-item list-group-item-action">{{ item.title }}</a>
+    {% endfor %}
+</div>
+{% endcomment %}
+<br>
+
+{% show_categories %}

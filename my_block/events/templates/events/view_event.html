@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+{{ event_item.title}} :: {{block.super }}
+{% endblock %}
+
+
+{% block sidebar %}
+
+{% include 'inc/_sidebar.html' %}
+
+{% endblock %}
+
+{% block content %}
+
+
+<div class="card mb-3">
+    <div class="card-header">
+        Категория: <a href="{{ event_item.category.get_absolute_url }}">
+        {{ event_tem.category }}</a>
+    </div>
+    <div class="col-md-100">
+        <div class="card-body">
+            <div class="media">
+                {% if event_item.image %}
+                <img src="{{ event_item.image.url }}" alt="" , width="150" class="mr-3">
+                <hr>
+                {% else %}
+                <img src="https://sun2-9.userapi.com/impg/UdtVAyRfRViY19v1AiK5uCQKWSHkEPFvlWPtPQ/DGDZCjl39kI.jpg?size=1073x1080&quality=9
+                        5&sign=ed65f55781d3f979643e323ff40fe92c&type=album"
+                     alt="" , width="300" , class="mr-5">
+                <hr>
+                {% endif %}
+                <div class="media-body">
+                    <h5 class="card-title">{{ event_item.name }}</h5>
+                    <p class="card-text">{{ event_item.test|safe|linebreaks }}</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="card-footer text-muted">
+        {{ event_item.data|date:"Y-m-d H:i:s" }}
+    </div>
+</div>
+{% endblock %}

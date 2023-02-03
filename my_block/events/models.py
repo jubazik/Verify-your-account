@@ -1,8 +1,11 @@
 from django.db import models
+from django.urls import reverse
 
 """
 Здесь записна все модели  Event, EventBlonck, Caterory
 """
+
+
 class Event(models.Model):
     data = models.DateTimeField(auto_now_add=True, verbose_name='Дата')
     event_image = models.ImageField(upload_to='event_images/', verbose_name='Фото')
@@ -16,19 +19,26 @@ class Event(models.Model):
         verbose_name_plural = 'Записи'
         ordering = ['-data']
 
+
 """
 
 
 """
+
+
 class EventsBlonck(models.Model):
     data = models.DateTimeField(auto_now_add=True, verbose_name='Дата')
     name = models.CharField(max_length=30, verbose_name='Имя')
-    image = models.ImageField(upload_to='events_images/', blank=True , verbose_name='Фото')
+    image = models.ImageField(upload_to='events_images/', blank=True, verbose_name='Фото')
     test = models.TextField(verbose_name='Текст')
     category = models.ForeignKey('Category', on_delete=models.PROTECT, null=True, verbose_name='Группа')
 
+    def get_absolute_url(self):
+        return reverse('view_event', kwargs={'event_id': self.pk})
+
     def my_func(self):
         return 'hello word'
+
     def __str__(self):
         return self.name
 
@@ -42,8 +52,12 @@ class EventsBlonck(models.Model):
 class Category(models.Model):
     title = models.CharField(max_length=1500, db_index=True, verbose_name='Группа')
 
+    def get_absolute_url(self):
+        return reverse('category', kwargs={'category_id': self.pk})
+
     def __str__(self):
         return self.title
+
     class Meta:
         verbose_name = 'Группа'
         verbose_name_plural = 'Группы'
