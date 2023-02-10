@@ -9,10 +9,10 @@ class EventAdmin(admin.ModelAdmin):
 
 
 class EventsBlonckAdmin(admin.ModelAdmin):
-    list_display = ('id', 'data', 'category', 'name', 'image', 'test')
+    list_display = ('id', 'data', 'category', 'name', 'image', 'is_published')
     list_display_links = ('id', 'name')
-    search_fields = ('data', 'name', 'test')
-    list_editable = ('category',)
+    search_fields = ('data', 'name', )
+    list_editable = ('category', 'is_published')
 
 
 class CategoryAdmin(admin.ModelAdmin):

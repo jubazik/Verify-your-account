@@ -31,10 +31,11 @@ class EventsBlonck(models.Model):
     name = models.CharField(max_length=30, verbose_name='Имя')
     image = models.ImageField(upload_to='events_images/', blank=True, verbose_name='Фото')
     test = models.TextField(verbose_name='Текст')
-    category = models.ForeignKey('Category', on_delete=models.PROTECT, null=True, verbose_name='Группа')
+    is_published = models.BooleanField(default=True, verbose_name='Опубликовано')
+    category = models.ForeignKey('Category', on_delete=models.PROTECT,  verbose_name='Группа')
 
     def get_absolute_url(self):
-        return reverse('view_event', kwargs={'event_id': self.pk})
+        return reverse('view_event', kwargs={'pk': self.pk})
 
     def my_func(self):
         return 'hello word'
